@@ -31,6 +31,10 @@ public interface UsuarioRepository extends CrudRepository<UsuarioModel, Long> {
     @Query(value = "SELECT * FROM usuario WHERE user_name like %:nombre%", nativeQuery = true)
     ArrayList<UsuarioModel> obterUsuarioPorNombre(String nombre);
 
+    @Override
+    @Query(value = "SELECT * FROM usuario", nativeQuery = true)
+    List<UsuarioModel> findAll();
+
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO usuario (user_name, password) VALUES (:username, :password);", nativeQuery = true)
